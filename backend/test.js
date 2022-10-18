@@ -98,7 +98,7 @@ const app = express()
 
 async function hashs(){
     const hashedPass = await bcrypt.hash("example", 10);
-    console.log(typeof hashedPass) // prints the actual hashed pass - It's printed second
+    console.log(hashedPass) // prints the actual hashed pass - It's printed second
 
     return hashedPass; //returns [object Promise]
 }
