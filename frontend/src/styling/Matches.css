@@ -1,0 +1,7 @@
+.matches {
+  display: flex;
+  flex-direction: column;
+  flex: 0.25;
+  height: 100%;
+  background-color: cadetblue;
+}

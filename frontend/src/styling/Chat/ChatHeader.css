@@ -1,0 +1,11 @@
+.chat_header {
+  height: 4rem;
+  width: 100%;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+}
+
+.header_icons {
+  margin-left: auto;
+}

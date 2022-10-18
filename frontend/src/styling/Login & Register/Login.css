@@ -1,0 +1,33 @@
+.login {
+  font-family: sans-serif;
+  background: lightsalmon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.form-container {
+  position: relative;
+  width: 60vh;
+  height: 80vh;
+  background-color: antiquewhite;
+}
+
+.login-form {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 3.125rem 2.5rem;
+  background-color: brown;
+  border-radius: 8px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  margin-top: 2.1875rem;
+}

@@ -1,0 +1,11 @@
+.messages {
+  display: flex;
+  background: lightblue;
+  max-width: 60%;
+  width: fit-content;
+  margin-left: auto;
+  padding: 0.5rem;
+  display: flex;
+  word-break: break-word;
+  border-radius: 10px;
+}
