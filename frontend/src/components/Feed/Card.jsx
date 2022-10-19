@@ -12,6 +12,7 @@ const Card = () => {
         {users.map((user) => (
           <div
             className="card_image"
+            key = {user._id.toString()}
             style={{ backgroundImage: `url(${user.image})` }}
           >
             <div className="card_content">
