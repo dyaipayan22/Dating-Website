@@ -42,18 +42,20 @@ app.post('/signup', async (req,res)=>{
         }
 
         const sanitizedEmail = email.toLowerCase()
-        const data = new user({
+        const new_user = new user({
             user_id: generateuserId,
             email: sanitizedEmail,
             password: hashedpassword
         })
-       const insertedUser = await data.save();
+       const insertedUser = await new_user.save();
+       console.log(insertedUser)
+       console.log(insertedUser.toJSON())
 
-    //    const token = jwt.sign(insertedUser, sanitizedEmail,{
-    //     expiresIn: 60*24,
-    //    })
+        const token = jwt.sign(insertedUser.toJSON(), sanitizedEmail,{
+         expiresIn: 60*24,
+        })
 
-      return res.status(201).json({ /*token,*/userId:generateuserId, email:sanitizedEmail})
+      return res.status(201).json({ token,userId:generateuserId, email:sanitizedEmail})
 
     }
     catch(err)
