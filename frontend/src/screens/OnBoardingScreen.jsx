@@ -146,8 +146,8 @@ const OnBoarding = () => {
           <input
             id="pictures"
             name="pictures"
-            type="file"
-            accept="image/*"
+            type="url"
+            // accept="image/*"
             value={formData.image}
             onChange={handleInput}
           />

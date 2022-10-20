@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import IconButton from "@mui/material/IconButton";
 import "../../styling/Feed/Card.css";
+import axios from "axios";
 import users from "../../users";
 
 const Card = () => {
+
+  console.log("printing from card", )
+
   return (
     <div className="card">
       <div className="card_container">

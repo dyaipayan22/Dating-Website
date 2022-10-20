@@ -114,6 +114,25 @@ app.get('/users', async (req,res)=>
     {
         const user_obj = await user.findOne({user_id:userId})
         res.send(user_obj)
+        console.log("test from /users")
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+})
+
+app.get('/filter-users', async (req,res)=>
+{
+    const gender = req.query.gender
+    console.log("test from /filter-users")
+
+    try
+    {
+        const query ={gender:{ $eq : gender }}
+        const user_obj = await user.find(query)
+        console.log(user_obj)
+        res.send(user_obj)
     }
     catch(err)
     {
@@ -141,6 +160,7 @@ app.put('/users', async (req,res)=>
             }
         }
         const updatedUser = await user.updateOne(query, updateDocument)
+        console.log("test from put /users")
         res.status(201).send(updatedUser)
     }
     catch(err)
@@ -151,11 +171,14 @@ app.put('/users', async (req,res)=>
 })
 
 //getting all the users in the db and resetting the user db
-app.get('/users',async (req,res)=>{
+app.get('/delusers',async (req,res)=>{
 
     try{
         const returnedUsers = await user.findOne({email:"arijit@gmail.com"})
         console.log(returnedUsers)
+        // const deleteUsers = await user.deleteMany({})
+        // console.log(deleteUsers)
+        console.log("test from delusers")
         res.send(returnedUsers)
     } 
     finally{

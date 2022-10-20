@@ -8,9 +8,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const Feed = () => {
-
   const [cookies,setCookie,removeCookie] = useCookies(['user'])
   const [user,setUser] = useState(null)
+  const [filteredUser,setFilteredUser] = useState(null)
   const userId = cookies.userId
   const getUser = async () =>
   {
@@ -21,22 +21,51 @@ const Feed = () => {
           params: {userId}
         })
         setUser(response.data)
-
       }
       catch(err)
       {
         console.log(err)
       }
   }
-  useEffect(()=>{
-      getUser()
-    },[])
+
+  const getFilteredUsers = async()=>
+  {
+        try 
+        {
+          
+          const response = await axios.get('http://localhost:8000/filter-users',{
+          params: {gender:user?.pref_gender}
+        })
+       setFilteredUser(response.data)
+
+      }
+      catch(err)
+      {
+        console.log(err)
+      }    
+  }
+
+
+  useEffect(() => {
+    getUser()
+
+}, [])
+
+useEffect(() => {
+    if (user) {
+        getFilteredUsers()
+    }
+}, [user])
+
     console.log('user data',user)
+    console.log('filtered user data',filteredUser)
+
 
   return (
     <div className="feed">
-      <Card />
+      <Card props={filteredUser}/>
       <ButtonsFooter />
+
     </div>
   );
 };
