@@ -4,6 +4,7 @@ import ChatBox from "./components/Chat/ChatBox";
 import Login from "./components/Login & Register/Login";
 import FeedScreen from "./screens/FeedScreen";
 import HomeScreen from "./screens/HomeScreen";
+import OnBoardingScreen from "./screens/OnBoardingScreen";
 import { useCookies } from "react-cookie";
 
 
@@ -18,6 +19,9 @@ function App() {
         <Route  path= "/signup" element = {<Login/>}/>
         {authToken && <Route  path= "/chat" element = {<ChatBox/>}/>}
         {authToken && <Route  path= "/feed" element = {<FeedScreen/>}/>}
+        {authToken && <Route  path= "/onboarding" element = {<OnBoardingScreen/>}/>}
+
+
       </Routes>
     </BrowserRouter>
   );
