@@ -1,13 +1,21 @@
 import React from "react";
+import { Avatar } from "@mui/material";
 import "../styling/Header.css";
 
 const Header = () => {
   return (
     <div className="header">
-      <div className="header_logo">Logo</div>
-      <div className="header_options">
-        <a href="#">Welcome</a>
-        <button className="header_Loginbtn">Log In</button>
+      <img className="header-logo" src="images/Amazon logo.png" alt="Logo" />
+      <div className="navbar">
+        <div className="nav-links">
+          <span>Explore</span>
+          <span>Likes</span>
+          <span>Events</span>
+        </div>
+        <div className="profile-display">
+          <Avatar className="profile-pic" />
+          <span>User</span>
+        </div>
       </div>
     </div>
   );
