@@ -51,7 +51,7 @@ const Login = () => {
           setCookie('email', response.data.email)
           setCookie('authToken', response.data.token)
           setCookie('userId', response.data.userId)
-          if(response.status === 201) navigate('/chat')
+          if(response.status === 201) navigate('/onboarding')
           console.log(response)
           }
         window.location.reload()

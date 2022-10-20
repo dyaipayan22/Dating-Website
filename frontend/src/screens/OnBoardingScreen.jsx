@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import axios from 'axios'
+import { useCookies } from "react-cookie";
 
 const OnBoarding = () => {
-  const [userDetails, setUserDetails] = useState({
+
+  const [cookies,setCookie,removeCookie] = useCookies(['user'])
+  const user_id=cookies.userId
+  const [formData, setFormData] = useState({
+    user_id:user_id,
     first_name: "",
     last_name: "",
     gender: "",
@@ -16,13 +22,25 @@ const OnBoarding = () => {
     const name = e.target.name;
     const value = e.target.value;
     console.log(value);
-    setUserDetails({ ...userDetails, [name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userDetails);
+    console.log(formData);
+    try{
+      const response = await axios.put('http://localhost:8000/users',{formData})
+      console.log(response)
+    }
+    catch(err){
+      console.log(err)
+    }
+    
+
   };
+
+
+
   return (
     <div className="onboarding">
       <form className="onBoarding-form" onSubmit={handleSubmit}>
@@ -34,7 +52,7 @@ const OnBoarding = () => {
             id="first_name"
             name="first_name"
             type="text"
-            value={userDetails.first_name}
+            value={formData.first_name}
             onChange={handleInput}
             required
           />
@@ -47,7 +65,7 @@ const OnBoarding = () => {
             id="last_name"
             name="last_name"
             type="text"
-            value={userDetails.last_name}
+            value={formData.last_name}
             onChange={handleInput}
             required
           />
@@ -93,7 +111,7 @@ const OnBoarding = () => {
             id="dob"
             name="dob"
             type="date"
-            value={userDetails.dob}
+            value={formData.dob}
             onChange={handleInput}
             required
           />
@@ -118,7 +136,7 @@ const OnBoarding = () => {
             id="description"
             name="description"
             type="text"
-            value={userDetails.description}
+            value={formData.description}
             onChange={handleInput}
           />
         </div>
@@ -130,7 +148,7 @@ const OnBoarding = () => {
             name="pictures"
             type="file"
             accept="image/*"
-            value={userDetails.image}
+            value={formData.image}
             onChange={handleInput}
           />
         </div>
@@ -142,7 +160,7 @@ const OnBoarding = () => {
             id="song"
             name="song"
             type="url"
-            value={userDetails.song}
+            value={formData.song}
             onChange={handleInput}
             required
           />
