@@ -1,17 +1,51 @@
 .header {
-  position: sticky;
-  background-color: brown;
-  justify-content: space-between;
+  position: fixed;
+  background-color: #f0ebce;
   display: flex;
   align-items: center;
-  /* width: 100%; */
-  height: 4rem;
+  width: 100%;
+  height: 5rem;
   padding: 0 2rem;
 }
+.header-logo {
+  height: 4rem;
+  padding: 0 1rem;
+}
 
-.header_option {
+.navbar {
+  width: inherit;
   display: flex;
-  margin: 1rem;
-  padding: 1rem;
+  align-items: center;
   justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.05rem;
+}
+
+.nav-links span {
+  width: 6rem;
+  text-align: center;
+  padding: 0.5rem 0.8rem;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.nav-links span:hover {
+  background-color: #e0144c;
+  border-radius: 20px;
+  color: #f0ebce;
+  cursor: pointer;
+}
+
+.profile-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-display span {
+  font-weight: 600;
+  font-size: 1.15rem;
 }
