@@ -18,6 +18,14 @@ const UserSchema = new mongoose.Schema({
     user_id:String,
     email:String,
     password:String,
+    first_name:String,
+    last_name:String,
+    gender:String,
+    pref_gender:String,
+    description:String,
+    dob: Date,
+    pictures: String,
+    song: String
 });
 
 const user = mongoose.model("user", UserSchema)
@@ -111,6 +119,35 @@ app.get('/users', async (req,res)=>
     {
         console.log(err)
     }
+})
+
+app.put('/users', async (req,res)=>
+{
+    const formData = req.body.formData
+
+    try 
+    {
+        const query = {user_id:formData.user_id}
+        const updateDocument = {
+            $set:{
+                first_name: formData.first_name,
+                last_name: formData.last_name,
+                gender: formData.gender,
+                dob: formData.dob,
+                pref_gender: formData.pref_gender,
+                description: formData.description,
+                pictures: formData.pictures,
+                song: formData.song,
+            }
+        }
+        const updatedUser = await user.updateOne(query, updateDocument)
+        res.status(201).send(updatedUser)
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+   
 })
 
 //getting all the users in the db and resetting the user db
