@@ -26,7 +26,6 @@ const user = mongoose.model("user", UserSchema)
 app.post('/signup', async (req,res)=>{
    
     const{email,password} = req.body
-
     const generateuserId = uuidv4()
     const hashedpassword = await bcrypt.hash(password, 10)
     
@@ -74,25 +73,44 @@ app.post('/login', async (req,res)=>{
 
            await bcrypt.compare(password,user_obj.password,function(err,result){
            
-            if(result === true)
-            {
+            // if(result === true)
+            // {
                 
-                res.send("success")
-            }
-            else if(result === false){
+            //     res.send("success")
+            // }
+            if(result === false){
                 console.log("wrong pass")
                 return res.status(500).send("fail")
             }
-            if(err)
+            else if(err)
             {
                 console.log(err);
                 
             }
         })
-           
+        const token = jwt.sign(user_obj.toJSON(), user_obj.email,{
+            expiresIn: 60*24,
+           })
+       
+        return res.status(201).json({ token,userId:user_obj.user_id, email})
             
-        
- 
+})
+//getting one user from the DB ?
+
+app.get('/users', async (req,res)=>
+{
+    const userId = req.query.userId
+
+
+    try
+    {
+        const user_obj = await user.findOne({user_id:userId})
+        res.send(user_obj)
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
 })
 
 //getting all the users in the db and resetting the user db

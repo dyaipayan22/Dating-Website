@@ -4,22 +4,23 @@ import usePasswordToggle from "../../hooks/usePasswordToggle";
 import LockIcon from "@mui/icons-material/Lock";
 import MailIcon from "@mui/icons-material/Mail";
 import axios from 'axios'
+import {useCookies} from 'react-cookie'
 import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
   const [PasswordInputType, ToggleIcon] = usePasswordToggle();
   const [isSignUp, setIsSignUp] = useState(true)
-
+  const [cookies,setCookie,removeCookie] = useCookies(['user'])
+  const [error,setError] = useState(null)
+  const navigate = useNavigate()
   const [user,setUser] = useState(
     {
       email:"",
       password:"",
       reEnterPass:""
     }) ;
-    const [error,setError] = useState(null)
 
-    let navigate = useNavigate()
-
+  //start of handle submit  
   const handleSubmit = async (e) =>
   {
     e.preventDefault()
@@ -34,7 +35,10 @@ const Login = () => {
           if(isSignUp===false)
           {
             const response = await axios.post('http://localhost:8000/login',{email, password})
-            if(response.data === "success")
+            setCookie('email', response.data.email)
+            setCookie('authToken', response.data.token)
+            setCookie('userId', response.data.userId)
+            if(response.status === 201)
             {
               navigate('/feed');
               console.log(response);
@@ -43,12 +47,17 @@ const Login = () => {
           }
           else{
 
-          const response = await axios.post('http://localhost:8000/signup',{email, password})         
+          const response = await axios.post('http://localhost:8000/signup',{email, password})    
+          setCookie('email', response.data.email)
+          setCookie('authToken', response.data.token)
+          setCookie('userId', response.data.userId)
           if(response.status === 201) navigate('/chat')
           console.log(response)
           }
-        }
+        window.location.reload()
 
+        }
+        
         catch(err)
         { 
           
@@ -72,6 +81,8 @@ const Login = () => {
           }
         }
   };
+  //end of handle submit
+
 
   const handleInput =  (e) =>
   {
@@ -82,7 +93,12 @@ const Login = () => {
     })
       console.log(e.target.value)
   }
-  const toggleRes = (e) => {setIsSignUp(!isSignUp)}
+
+
+  const toggleRes = (e) => 
+  {
+    setIsSignUp(!isSignUp)
+  }
   
   return (
     <div className="login">

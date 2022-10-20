@@ -5,12 +5,24 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CheckIcon from "@mui/icons-material/Check";
 import IconButton from "@mui/material/IconButton";
 import "../../styling/Feed/ButtonsFooter.css";
+import { useCookies } from "react-cookie";
 
 const ButtonsFooter = () => {
+
+  const [cookies,setCookie,removeCookie] = useCookies(['user'])
+
+
+  const handleClick  = ()=>{
+    removeCookie('authToken',cookies.authToken)
+    removeCookie('email',cookies.email)
+    removeCookie('userId',cookies.userId)
+    window.location.reload()
+  }
+
   return (
     <div className="btns_footer">
-      <IconButton>
-        <CancelIcon fontSize="large" />
+      <IconButton onClick={handleClick}>
+        <CancelIcon  fontSize="large" />
       </IconButton>
 
       <IconButton>
@@ -22,7 +34,7 @@ const ButtonsFooter = () => {
       </IconButton>
 
       <IconButton>
-        <CheckIcon fontSize="large" />
+        <CheckIcon  fontSize="large" />
       </IconButton>
     </div>
   );
