@@ -9,18 +9,14 @@ import Header from "./components/Header";
 import { useCookies } from "react-cookie";
 
 function App() {
-<<<<<<< HEAD
+
   const [cookies,setCookie,removeCookie]=useCookies(['user'])
   const authToken = cookies.authToken
 
-=======
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  const authToken = cookies.authToken;
-  console.log(authToken);
->>>>>>> f33d3d14b373e72d411d2298f5c5131340a7c021
+
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route exact path="/" element={<HomeScreen />} />
         <Route path="/signup" element={<Login />} />

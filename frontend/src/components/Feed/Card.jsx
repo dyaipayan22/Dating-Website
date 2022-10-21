@@ -5,30 +5,29 @@ import IconButton from "@mui/material/IconButton";
 import "../../styling/Feed/Card.css";
 import axios from "axios";
 import users from "../../users";
+import ButtonsFooter from "./ButtonsFooter";
 
-const Card = () => {
-
-  console.log("printing from card", )
+const Card = (props) => {
+  //const props_users = props
+  console.log("From card",props)
 
   return (
     <div className="card">
       <div className="card_container">
-        {users.map((user) => (
           <div
             className="card_image"
-            key = {user._id.toString()}
-            style={{ backgroundImage: `url(${user.image})` }}
+            
+            style={{ backgroundImage: `url(${props.fuser.pictures})` }}
           >
             <div className="card_content">
               <div className="card_title">
-                <h2>{user.name}</h2>
+                <h2>{props.fuser.first_name}</h2>
               </div>
               <div className="card_description">
-                <p>{user.bio}</p>
+                <p>{props.fuser.description}</p>
               </div>
             </div>
           </div>
-        ))}
       </div>
       <div className="btn_container">
         <IconButton className="play_pause_btn">
@@ -36,6 +35,7 @@ const Card = () => {
           {/* <PlayArrowIcon fontSize="large" /> */}
         </IconButton>
       </div>
+      
     </div>
   );
 };

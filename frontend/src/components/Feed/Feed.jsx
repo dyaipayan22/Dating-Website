@@ -4,13 +4,14 @@ import Card from "./Card";
 import ButtonsFooter from "./ButtonsFooter";
 import {useCookies} from 'react-cookie'
 import axios from 'axios'
-import { useState } from "react";
+import { useState , useRef} from "react";
 import { useEffect } from "react";
 
 const Feed = () => {
+  // console.log("feed run")
   const [cookies,setCookie,removeCookie] = useCookies(['user'])
-  const [user,setUser] = useState(null)
-  const [filteredUser,setFilteredUser] = useState(null)
+  const [user,setUser] = useState()
+  const [filteredUser,setFilteredUser] = useState()
   const userId = cookies.userId
   const getUser = async () =>
   {
@@ -21,6 +22,7 @@ const Feed = () => {
           params: {userId}
         })
         setUser(response.data)
+        
       }
       catch(err)
       {
@@ -37,12 +39,14 @@ const Feed = () => {
           params: {gender:user?.pref_gender}
         })
        setFilteredUser(response.data)
+       
 
       }
       catch(err)
       {
         console.log(err)
       }    
+
   }
 
 
@@ -57,16 +61,18 @@ useEffect(() => {
     }
 }, [user])
 
-    console.log('user data',user)
-    console.log('filtered user data',filteredUser)
-
-
+console.log('user data from feed',user)
+console.log('filtered user data from feed',filteredUser)
   return (
-    <div className="feed">
-      <Card props={filteredUser}/>
-      <ButtonsFooter />
+    <>{user && 
+      <div className="feed">
+      {
+      filteredUser?.map((fuser)=>
+      <Card key={fuser._id} fuser={fuser}/>)} 
 
-    </div>
+      <ButtonsFooter />
+    </div>}</>
+    
   );
 };
 

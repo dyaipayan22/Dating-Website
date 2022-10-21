@@ -131,7 +131,7 @@ app.get('/filter-users', async (req,res)=>
     {
         const query ={gender:{ $eq : gender }}
         const user_obj = await user.find(query)
-        console.log(user_obj)
+        console.log("filtered users",user_obj)
         res.send(user_obj)
     }
     catch(err)
