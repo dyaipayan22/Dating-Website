@@ -40,7 +40,15 @@ const Login = () => {
             setCookie('userId', response.data.userId)
             if(response.status === 201)
             {
-              navigate('/feed');
+              if(response.data.first_name)
+              {
+                navigate('/feed');
+              }
+              else
+              {
+                navigate('/onboarding');
+              }
+              
               console.log(response);
             } 
 

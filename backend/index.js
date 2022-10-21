@@ -100,7 +100,7 @@ app.post('/login', async (req,res)=>{
             expiresIn: 60*24,
            })
        
-        return res.status(201).json({ token,userId:user_obj.user_id, email})
+        return res.status(201).json({ token,userId:user_obj.user_id,email, first_name:user_obj.first_name})
             
 })
 //getting one user from the DB ?

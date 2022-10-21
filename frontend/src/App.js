@@ -18,8 +18,8 @@ function App() {
     <BrowserRouter>
       {/* <Header /> */}
       <Routes>
-        <Route exact path="/" element={<HomeScreen />} />
-        <Route path="/signup" element={<Login />} />
+        <Route exact path="/" element={<Login />} />
+        {/* <Route path="/signup" element={<Login />} /> */}
         {authToken && <Route path="/chat" element={<ChatBox />} />}
         {authToken && <Route path="/feed" element={<FeedScreen />} />}
         {authToken && (

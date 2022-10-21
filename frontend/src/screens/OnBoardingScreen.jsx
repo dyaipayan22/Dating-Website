@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from 'axios'
 import { useCookies } from "react-cookie";
+import {useNavigate} from 'react-router-dom'
 
 const OnBoarding = () => {
-
+  const navigate = useNavigate()
   const [cookies,setCookie,removeCookie] = useCookies(['user'])
   const user_id=cookies.userId
   const [formData, setFormData] = useState({
@@ -31,6 +32,8 @@ const OnBoarding = () => {
     try{
       const response = await axios.put('http://localhost:8000/users',{formData})
       console.log(response)
+      navigate('/feed')
+
     }
     catch(err){
       console.log(err)
