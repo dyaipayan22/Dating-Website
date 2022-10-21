@@ -36,6 +36,7 @@ const Card = (props) => {
         </IconButton>
       </div>
       
+      <ButtonsFooter />
     </div>
   );
 };

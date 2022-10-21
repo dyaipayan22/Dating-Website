@@ -64,14 +64,19 @@ useEffect(() => {
 console.log('user data from feed',user)
 console.log('filtered user data from feed',filteredUser)
   return (
-    <>{user && 
+    <>
+    {user && 
       <div className="feed">
       {
       filteredUser?.map((fuser)=>
       <Card key={fuser._id} fuser={fuser}/>)} 
 
-      <ButtonsFooter />
-    </div>}</>
+
+    </div>
+    }
+    
+        
+    </>
     
   );
 };

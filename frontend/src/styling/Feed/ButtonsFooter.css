@@ -1,10 +1,10 @@
 .btns_footer {
   position: absolute;
   display: flex;
-  /* background-color: yellow; */
+  background-color: rgb(230, 77, 77);
   height: 4rem;
-  width: 70%;
-  bottom: 10vh;
+  width: 100%;
+  bottom: 0vh;
   justify-content: space-evenly;
   align-items: center;
 }
