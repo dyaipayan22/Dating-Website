@@ -1,8 +1,20 @@
 .feed {
-  position: relative;
+  margin-top: 5rem;
+  display: grid;
+  overflow-y: scroll;
+  background-color: #e3edf7;
+  place-items: center;
+  padding-bottom: 5rem;
+}
+
+/* .feed {
+  margin-top: 5rem;
   display: flex;
-  flex: 0.5;
-  background-color: bisque;
-  justify-content: center;
-  padding: 5rem;
+  overflow-x: scroll;
+  background-color: #fff8ea;
+  place-items: center;
+  padding-bottom: 5rem;
+} */
+.feed::-webkit-scrollbar {
+  display: none;
 }
